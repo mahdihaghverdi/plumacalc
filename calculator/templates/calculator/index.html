@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    My Simple Calculator
+{% endblock %}
+
+{% block content %}
+    <h1>Simple Calculator</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <p><input type="submit" value="Calculate"></p>
+    </form>
+
+    {% if postfix %}
+        <h2>{{ postfix }}</h2>
+    {% endif %}
+
+    {% if answer is not None %}
+        <h3>{{ answer }}</h3>
+    {% endif %}
+
+{% endblock %}
