@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "plumacalc"
+version = "0.1.0"
+description = ""
+authors = ["Mahdi Haghverdi <mahdihaghverdiliewpl@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^3.2.16"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.12.0"
+isort = "^5.11.1"
+mypy = "^0.982"
+flake8 = "^6.0.0"
+autoflake = "^2.0.0"
+pre-commit = "^2.20.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
