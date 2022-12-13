@@ -1,4 +1,7 @@
-from django.http import HttpResponse
 from django.urls import path
 
-urlpatterns = [path("", lambda x: HttpResponse("Hello, World!"))]
+from calculator import views
+
+urlpatterns = [
+    path("", views.calculate, name="calculate"),
+]
