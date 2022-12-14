@@ -10,15 +10,19 @@ def calculate(request: HttpRequest) -> HttpResponse:
         case "GET":
             form = InputForm()
             return render(request, "calculator/index.html", {"form": form})
+
         case "POST":
             form = InputForm(request.POST)
             postfix, answer, errors = [None] * 3
             if form.is_valid():
+                cd = form.cleaned_data["input"]
                 try:
-                    postfix = postfixcalc.infix_to_postfix(form.cleaned_data["input"])
-                    answer = postfixcalc.evaluate(postfix)
+                    postfix = postfixcalc.infix_to_postfix(cd)
+                    answer = postfixcalc.evaluate(cd)
                 except SyntaxError as e:
-                    errors = e
+                    errors = e.msg
+                except (TypeError, ValueError):
+                    errors = "Wrong Input"
                 return render(
                     request,
                     "calculator/index.html",
