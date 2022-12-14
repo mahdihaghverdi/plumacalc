@@ -1,3 +1,4 @@
+import black
 import postfixcalc
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
@@ -5,7 +6,7 @@ from django.shortcuts import render
 from .forms import InputForm
 
 
-def calculate(request: HttpRequest) -> HttpResponse:
+def calculate(request: HttpRequest, postfix_para: str = "") -> HttpResponse:
     match request.method:
         case "GET":
             form = InputForm()
@@ -30,7 +31,12 @@ def calculate(request: HttpRequest) -> HttpResponse:
                     {
                         "form": form,
                         "input": cd,
-                        "postfix": postfix,
+                        "postfix": black.format_str(
+                            mode=black.Mode(line_length=30),
+                            src_contents=postfix.__str__(),
+                        )
+                        if postfix_para
+                        else None,
                         "answer": answer,
                         "errors": errors,
                     },
