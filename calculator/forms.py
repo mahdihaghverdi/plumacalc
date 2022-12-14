@@ -7,5 +7,11 @@ class InputForm(forms.Form):
         label="Expression",
         label_suffix=": ",
         empty_value="Arithmetic Expression",
-        widget=TextInput(attrs={"class": "form-control"}),
+        widget=TextInput(
+            attrs={
+                "class": "form-control",
+                "style": "font-family: monospace",
+                "id": "userinput",
+            },
+        ),
     )

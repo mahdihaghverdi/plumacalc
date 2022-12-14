@@ -28,7 +28,9 @@
                         <button class="col btn btn-outline-secondary" value="9">9</button>
                     </div>
                     <div class="row">
+                        <button class="col btn btn-outline-secondary" value=".">.</button>
                         <button class="col btn btn-outline-secondary" value="0">0</button>
+                        <button class="col btn btn-outline-warning" value="C" onclick="removeLast()">C</button>
                     </div>
                 </div>
                 <div class="col">
@@ -46,7 +48,7 @@
                     </div>
                     <div class="row">
                         <button class="col btn btn-outline-info" value="^">^</button>
-                        <button class="col btn btn-outline-info" value="C">C</button>
+                        <button class="col btn btn-outline-danger" onclick="clearInput()">CE</button>
                     </div>
                 </div>
             </div>
@@ -60,18 +62,18 @@
 
 {% block postfix_result %}
     {% if postfix %}
-        <div class="alert alert-primary" role="alert">
+        <div class="alert alert-primary" role="alert" style="font-family: monospace">
             Postfix: {{ postfix }}
         </div>
     {% endif %}
 
     {% if answer is not None %}
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success" role="alert" style="font-family: monospace">
             Answer: {{ answer }}
         </div>
     {% endif %}
     {% if errors %}
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger" role="alert" style="font-family: monospace">
             {{ errors }}
         </div>
     {% endif %}
@@ -79,7 +81,7 @@
 
 {% block sidebar %}
     {% if input %}
-        <div class="alert alert-info" role="alert">
+        <div class="alert alert-info" role="alert" style="font-family: monospace">
             {{ input }}
         </div>
     {% endif %}
