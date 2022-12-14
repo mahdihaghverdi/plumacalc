@@ -21,3 +21,7 @@ label {
     color: #333;
     margin-bottom: 4px;
 }
+
+button {
+    margin: 0.3rem;
+}

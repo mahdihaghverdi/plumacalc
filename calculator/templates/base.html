@@ -53,22 +53,34 @@
         </div>
     </div>
 </nav>
+
 <div class="container">
-    <div class="content">
-        {% block content %}
-        {% endblock %}
-    </div>
-    <div class="sidebar bg-light">
-    <h3>History</h3>
-        {% block sidebar %}
-        {% endblock %}
+    <div class="d-flex flex-row mb-3" style="margin-top: .5rem">
+        <div class="flex-fill">
+            {% block calculator %}
+            {% endblock %}
+        </div>
+
+        <div class="flex-fill bg-opacity-20 bg-light align-self-start"
+             style="margin-right: 1rem; margin-left: 1rem; padding: .85rem">
+            <h4>Calculations</h4>
+            {% block postfix_result %}
+            {% endblock %}
+        </div>
+
+        <div class="bg-light align-self-start flex-fill" style="padding: .85rem; border-radius: 2px">
+            <h4>History</h4>
+            {% block sidebar %}
+            {% endblock %}
+        </div>
     </div>
 </div>
-{#<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"#}
-{#        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"#}
-{#        crossorigin="anonymous"></script>#}
-{#<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"#}
-{#        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"#}
-{#        crossorigin="anonymous"></script>#}
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
 </body>
 </html>
