@@ -17,8 +17,9 @@ def calculate(request: HttpRequest) -> HttpResponse:
             if form.is_valid():
                 cd = form.cleaned_data["input"]
                 try:
-                    postfix = postfixcalc.infix_to_postfix(cd)
-                    answer = postfixcalc.evaluate(cd)
+                    calc = postfixcalc.Calc(cd)
+                    postfix = calc.postfix
+                    answer = calc.answer
                 except SyntaxError as e:
                     errors = e.msg
                 except (TypeError, ValueError):
