@@ -5,59 +5,61 @@
 {% endblock %}
 
 {% block calculator %}
-    <h1 style="font-family: 'Arial',serif">Simple Calculator</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <button class="col btn btn-outline-secondary" onclick="display(value=1)">1</button>
-                        <button class="col btn btn-outline-secondary" onclick="display(value=2)">2</button>
-                        <button class="col btn btn-outline-secondary" onclick="display(value=3)">3</button>
+    <h4>Calculator</h4>
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <button class="col btn btn-outline-secondary" onclick="display(value=1)">1</button>
+                            <button class="col btn btn-outline-secondary" onclick="display(value=2)">2</button>
+                            <button class="col btn btn-outline-secondary" onclick="display(value=3)">3</button>
+                        </div>
+                        <div class="row">
+                            <button class="col btn btn-outline-secondary" onclick="display(value=4)">4</button>
+                            <button class="col btn btn-outline-secondary" onclick="display(value=5)">5</button>
+                            <button class="col btn btn-outline-secondary" onclick="display(value=6)">6</button>
+                        </div>
+                        <div class="row">
+                            <button class="col btn btn-outline-secondary" onclick="display(value=7)">7</button>
+                            <button class="col btn btn-outline-secondary" onclick="display(value=8)">8</button>
+                            <button class="col btn btn-outline-secondary" onclick="display(value=9)">9</button>
+                        </div>
+                        <div class="row">
+                            <button class="col btn btn-outline-secondary" onclick="display(value='.')">.</button>
+                            <button class="col btn btn-outline-secondary" onclick="display(value=0)">0</button>
+                            <button class="col btn btn-outline-warning" onclick="removeLast()">C</button>
+                        </div>
                     </div>
-                    <div class="row">
-                        <button class="col btn btn-outline-secondary" onclick="display(value=4)">4</button>
-                        <button class="col btn btn-outline-secondary" onclick="display(value=5)">5</button>
-                        <button class="col btn btn-outline-secondary" onclick="display(value=6)">6</button>
-                    </div>
-                    <div class="row">
-                        <button class="col btn btn-outline-secondary" onclick="display(value=7)">7</button>
-                        <button class="col btn btn-outline-secondary" onclick="display(value=8)">8</button>
-                        <button class="col btn btn-outline-secondary" onclick="display(value=9)">9</button>
-                    </div>
-                    <div class="row">
-                        <button class="col btn btn-outline-secondary" onclick="display(value='.')">.</button>
-                        <button class="col btn btn-outline-secondary" onclick="display(value=0)">0</button>
-                        <button class="col btn btn-outline-warning" onclick="removeLast()">C</button>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <button class="col btn btn-outline-info" onclick="display(value='(')">(</button>
-                        <button class="col btn btn-outline-info" onclick="display(value=')')">)</button>
-                    </div>
-                    <div class="row">
-                        <button class="col btn btn-outline-info" onclick="display(value='+')">+</button>
-                        <button class="col btn btn-outline-info" onclick="display(value='-')">-</button>
-                    </div>
-                    <div class="row">
-                        <button class="col btn btn-outline-info" onclick="display(value='*')">*</button>
-                        <button class="col btn btn-outline-info" onclick="display(value='/')">/</button>
-                    </div>
-                    <div class="row">
-                        <button class="col btn btn-outline-info" onclick="display(value='^')">^</button>
-                        <button class="col btn btn-outline-danger" onclick="clearInput()">CE</button>
+                    <div class="col">
+                        <div class="row">
+                            <button class="col btn btn-outline-info" onclick="display(value='(')">(</button>
+                            <button class="col btn btn-outline-info" onclick="display(value=')')">)</button>
+                        </div>
+                        <div class="row">
+                            <button class="col btn btn-outline-info" onclick="display(value='+')">+</button>
+                            <button class="col btn btn-outline-info" onclick="display(value='-')">-</button>
+                        </div>
+                        <div class="row">
+                            <button class="col btn btn-outline-info" onclick="display(value='*')">*</button>
+                            <button class="col btn btn-outline-info" onclick="display(value='/')">/</button>
+                        </div>
+                        <div class="row">
+                            <button class="col btn btn-outline-info" onclick="display(value='^')">^</button>
+                            <button class="col btn btn-outline-danger" onclick="clearInput()">CE</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div style="margin: 1rem 1rem 1rem 0.4rem">
-            <input class="btn btn-primary" type="submit" value="Calculate">
-            <a class="btn btn-outline-danger" href="{% url 'calculate' %}">Clear</a>
-        </div>
-    </form>
+            <div style="margin: 1rem 1rem 1rem 0.4rem">
+                <input class="btn btn-primary" type="submit" value="Calculate">
+                <a class="btn btn-outline-danger" href="{% url 'calculate' %}">Clear</a>
+            </div>
+        </form>
+    </div>
 {% endblock %}
 
 {% block postfix_result %}
@@ -66,7 +68,6 @@
             Postfix: {{ postfix }}
         </div>
     {% endif %}
-
     {% if answer is not None %}
         <div class="alert alert-success" role="alert" style="font-family: monospace">
             Answer: {{ answer }}
