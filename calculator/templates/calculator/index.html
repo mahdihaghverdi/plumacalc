@@ -13,41 +13,41 @@
             <div class="row">
                 <div class="col">
                     <div class="row">
-                        <button class="col btn btn-outline-secondary" value="1">1</button>
-                        <button class="col btn btn-outline-secondary" value="2">2</button>
-                        <button class="col btn btn-outline-secondary" value="3">3</button>
+                        <button class="col btn btn-outline-secondary" onclick="display(value=1)">1</button>
+                        <button class="col btn btn-outline-secondary" onclick="display(value=2)">2</button>
+                        <button class="col btn btn-outline-secondary" onclick="display(value=3)">3</button>
                     </div>
                     <div class="row">
-                        <button class="col btn btn-outline-secondary" value="4">4</button>
-                        <button class="col btn btn-outline-secondary" value="5">5</button>
-                        <button class="col btn btn-outline-secondary" value="6">6</button>
+                        <button class="col btn btn-outline-secondary" onclick="display(value=4)">4</button>
+                        <button class="col btn btn-outline-secondary" onclick="display(value=5)">5</button>
+                        <button class="col btn btn-outline-secondary" onclick="display(value=6)">6</button>
                     </div>
                     <div class="row">
-                        <button class="col btn btn-outline-secondary" value="7">7</button>
-                        <button class="col btn btn-outline-secondary" value="8">8</button>
-                        <button class="col btn btn-outline-secondary" value="9">9</button>
+                        <button class="col btn btn-outline-secondary" onclick="display(value=7)">7</button>
+                        <button class="col btn btn-outline-secondary" onclick="display(value=8)">8</button>
+                        <button class="col btn btn-outline-secondary" onclick="display(value=9)">9</button>
                     </div>
                     <div class="row">
-                        <button class="col btn btn-outline-secondary" value=".">.</button>
-                        <button class="col btn btn-outline-secondary" value="0">0</button>
-                        <button class="col btn btn-outline-warning" value="C" onclick="removeLast()">C</button>
+                        <button class="col btn btn-outline-secondary" onclick="display(value='.')">.</button>
+                        <button class="col btn btn-outline-secondary" onclick="display(value=0)">0</button>
+                        <button class="col btn btn-outline-warning" onclick="removeLast()">C</button>
                     </div>
                 </div>
                 <div class="col">
                     <div class="row">
-                        <button class="col btn btn-outline-info" value="(">(</button>
-                        <button class="col btn btn-outline-info" value=")">)</button>
+                        <button class="col btn btn-outline-info" onclick="display(value='(')">(</button>
+                        <button class="col btn btn-outline-info" onclick="display(value=')')">)</button>
                     </div>
                     <div class="row">
-                        <button class="col btn btn-outline-info" value="+">+</button>
-                        <button class="col btn btn-outline-info" value="-">-</button>
+                        <button class="col btn btn-outline-info" onclick="display(value='+')">+</button>
+                        <button class="col btn btn-outline-info" onclick="display(value='-')">-</button>
                     </div>
                     <div class="row">
-                        <button class="col btn btn-outline-info" value="*">*</button>
-                        <button class="col btn btn-outline-info" value="/">/</button>
+                        <button class="col btn btn-outline-info" onclick="display(value='*')">*</button>
+                        <button class="col btn btn-outline-info" onclick="display(value='/')">/</button>
                     </div>
                     <div class="row">
-                        <button class="col btn btn-outline-info" value="^">^</button>
+                        <button class="col btn btn-outline-info" onclick="display(value='^')">^</button>
                         <button class="col btn btn-outline-danger" onclick="clearInput()">CE</button>
                     </div>
                 </div>
