@@ -28,6 +28,7 @@ def calculate(request: HttpRequest) -> HttpResponse:
                     "calculator/index.html",
                     {
                         "form": form,
+                        "input": cd,
                         "postfix": postfix,
                         "answer": answer,
                         "errors": errors,

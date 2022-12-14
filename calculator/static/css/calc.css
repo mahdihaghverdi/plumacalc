@@ -1,0 +1,23 @@
+.content {
+    float: left;
+    width: 40%;
+    padding: 0 0 0 30px;
+    margin-top: 1rem;
+}
+
+.sidebar {
+    float: right;
+    width: 40%;
+    padding: 10px;
+    /*background: #f8f8f8;*/
+    height: 100%;
+    margin-top: 1rem;
+    border-radius: 2%;
+}
+
+label {
+    float: left;
+    clear: both;
+    color: #333;
+    margin-bottom: 4px;
+}

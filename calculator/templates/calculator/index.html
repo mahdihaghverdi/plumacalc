@@ -8,16 +8,42 @@
     <h1>Simple Calculator</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_table }}
-        <p><input type="submit" value="Calculate"></p>
+        {{ form.as_p }}
+        <div style="margin-bottom: 0.3rem">
+            <button class="btn btn-outline-warning">1</button>
+            <button class="btn btn-outline-warning">2</button>
+            <button class="btn btn-outline-warning">3</button>
+        </div>
+        <div style="margin-bottom: 0.3rem">
+            <button class="btn btn-outline-warning">4</button>
+            <button class="btn btn-outline-warning">5</button>
+            <button class="btn btn-outline-warning">6</button>
+        </div>
+        <div style="margin-bottom: 1.1rem">
+            <button class="btn btn-outline-warning">7</button>
+            <button class="btn btn-outline-warning">8</button>
+            <button class="btn btn-outline-warning">9</button>
+        </div>
+        <div style="margin-bottom: 1rem">
+            <input class="btn btn-primary" type="submit" value="Calculate">
+            <a class="btn btn-outline-danger" href="{% url 'calculate' %}">Clear</a>
+        </div>
     </form>
-
     {% if postfix %}
         <h2>{{ postfix }}</h2>
     {% endif %}
-
     {% if answer is not None %}
         <h3>{{ answer }}</h3>
     {% endif %}
+    {% if errors %}
+        <h3 style="color: crimson">{{ errors }}</h3>
+    {% endif %}
+{% endblock %}
 
+{% block sidebar %}
+    {% if input %}
+        <div class="alert alert-info" role="alert">
+            {{ input }}
+        </div>
+    {% endif %}
 {% endblock %}
