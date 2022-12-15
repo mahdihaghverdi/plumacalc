@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     My Simple Calculator
 {% endblock %}
 
 {% block calculator %}
+    <script src="{% static 'js/script.js' %}"></script>
     <h4>Calculator</h4>
     <div class="container">
         <form method="post">
@@ -65,7 +67,7 @@
 {% block postfix_result %}
     {% if postfix %}
         <div class="alert alert-primary" role="alert" style="font-family: monospace">
-            Postfix: {{ postfix }}
+            Postfix: {{ postfix|linebreaks }}
         </div>
     {% endif %}
     {% if answer is not None %}
@@ -81,9 +83,11 @@
 {% endblock %}
 
 {% block sidebar %}
-    {% if input %}
-        <div class="alert alert-info" role="alert" style="font-family: monospace">
-            {{ input }}
-        </div>
+    {% if history %}
+        {% for hist in history %}
+            <div class="alert alert-info" role="alert" style="font-family: monospace">
+                {{ hist|truncatechars:40 }}
+            </div>
+        {% endfor %}
     {% endif %}
 {% endblock %}

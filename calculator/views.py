@@ -4,13 +4,15 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 from .forms import InputForm
+from .models import History
 
 
 def calculate(request: HttpRequest, postfix_para: str = "") -> HttpResponse:
+    history = History.objects.all().order_by('-created')[:5]
     match request.method:
         case "GET":
             form = InputForm()
-            return render(request, "calculator/index.html", {"form": form})
+            return render(request, "calculator/index.html", {"form": form, 'history': history})
 
         case "POST":
             form = InputForm(request.POST)
@@ -21,10 +23,14 @@ def calculate(request: HttpRequest, postfix_para: str = "") -> HttpResponse:
                     calc = postfixcalc.Calc(cd)
                     postfix = calc.postfix
                     answer = calc.answer
+                    hist = History(input=cd, answer=answer)
+                    hist.save()
                 except SyntaxError as e:
                     errors = e.msg
                 except (TypeError, ValueError):
                     errors = "Wrong Input"
+
+                history = History.objects.all().order_by('-created')[:5]
                 return render(
                     request,
                     "calculator/index.html",
@@ -32,13 +38,14 @@ def calculate(request: HttpRequest, postfix_para: str = "") -> HttpResponse:
                         "form": form,
                         "input": cd,
                         "postfix": black.format_str(
-                            mode=black.Mode(line_length=30),
+                            mode=black.Mode(line_length=20),
                             src_contents=postfix.__str__(),
                         )
                         if postfix_para
                         else None,
                         "answer": answer,
                         "errors": errors,
+                        'history': history
                     },
                 )
 

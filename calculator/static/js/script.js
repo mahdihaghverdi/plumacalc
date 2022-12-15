@@ -9,6 +9,6 @@ function removeLast() {
 
 
 function display(value) {
-    let input = document.getElementById('userinput').value
-    document.getElementById('userinput').value += value
+    let input = document.getElementById('userinput').value;
+    document.getElementById('userinput').value = input + value;
 }
