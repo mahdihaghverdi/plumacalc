@@ -2,6 +2,7 @@ import black
 import postfixcalc
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.views.generic import ListView
 
 from .forms import InputForm
 from .models import History
@@ -52,3 +53,9 @@ def calculate(request: HttpRequest, postfix_para: str = "") -> HttpResponse:
 
 def calc_with_postfix(request: HttpRequest) -> HttpResponse:
     return calculate(request, 'something')
+
+
+class HistoryListView(ListView):
+    template_name = 'calculator/history.html'
+    model = History
+    context_object_name = 'history'
