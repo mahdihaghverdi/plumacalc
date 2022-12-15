@@ -41,3 +41,7 @@ def calculate(request: HttpRequest, postfix_para: str = "") -> HttpResponse:
                         "errors": errors,
                     },
                 )
+
+
+def calc_with_postfix(request: HttpRequest) -> HttpResponse:
+    return calculate(request, 'something')
