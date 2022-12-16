@@ -112,7 +112,7 @@
                 </div>
             {% endblock %}
             {% block postfix_result %}
-                <div class="flex-fill bg-info bg-opacity-10 align-self-start"
+                <div class="flex-fill bg-light bg-opacity-10 align-self-start"
                      style="margin-right: 1rem; margin-left: 1rem; padding: .85rem">
                     <h4>Calculations</h4>
                     {% if postfix %}
@@ -133,14 +133,22 @@
                 </div>
             {% endblock %}
             {% block sidebar %}
-                <div class="bg-opacity-10 bg-secondary align-self-start flex-sm-column"
+                <div class="align-self-start flex-sm-column"
                      style="padding: .85rem; border-radius: 2px">
                     <h4>History</h4>
                     {% if history %}
                         {% for hist in history %}
-                            <div class="alert alert-info" role="alert" style="font-family: monospace">
-                                <i class="bi bi-info-circle-fill"></i> {{ hist|truncatechars:40 }}
-                            </div>
+                            {% if forloop.counter == 1 %}
+                                <div class="alert alert-info" role="alert" style="font-family: monospace; padding: 10px; margin-right: 0.45rem; margin-left: 0.45rem">
+                                    <i class="bi bi-info-circle-fill"></i> {{ hist|truncatechars:40 }}
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">new<span class="visually-hidden">unread messages</span></span>
+                                </div>
+                            {% else %}
+                                <div class="alert alert-info" role="alert" style="font-family: monospace; padding: 10px; margin-right: 0.45rem; margin-left: 0.45rem">
+                                    <i class="bi bi-info-circle-fill"></i> {{ hist|truncatechars:40 }}
+                                </div>
+                            {% endif %}
+
                         {% endfor %}
                     {% endif %}
                 </div>
