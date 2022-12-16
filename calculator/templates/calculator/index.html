@@ -153,25 +153,65 @@
                 </div>
             {% endblock %}
         </div>
-        <div class="container">
+        <div class="col-6">
             {% block sidebar %}
                 <div class="align-self-start flex-sm-column"
                      style="padding: .85rem; border-radius: 2px">
                     <h4>History</h4>
                     {% if history %}
                         {% for hist in history %}
-                            {% if forloop.counter == 1 %}
-                                <div class="alert alert-info" role="alert" style="font-family: monospace; padding: 10px; margin-right: 0.45rem; margin-left: 0.45rem">
-                                    <i class="bi bi-info-circle-fill"></i> {{ hist|truncatechars:40 }}
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">new<span class="visually-hidden">unread messages</span></span>
+                            <div class="card text-center" style="margin: 1rem;">
+                                <div class="card-header">
+                                    <ul class="nav nav-tabs card-header-tabs">
+                                        <li class="nav-item">
+                                            {% if forloop.counter == 1 %}
+                                                <a class="nav-link active" aria-current="true" href="#">
+                                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">new<span
+                                                            class="visually-hidden">unread messages</span></span>Calculation</a>
+                                            {% else %}
+                                                <a class="nav-link active" aria-current="true" href="#">Calculation</a>
+                                            {% endif %}
+                                        </li>
+                                    </ul>
                                 </div>
-                            {% else %}
-                                <div class="alert alert-info" role="alert" style="font-family: monospace; padding: 10px; margin-right: 0.45rem; margin-left: 0.45rem">
-                                    <i class="bi bi-info-circle-fill"></i> {{ hist|truncatechars:40 }}
+                                <div class="card-body">
+                                    {% if forloop.counter == 1 %}
+                                        <p class="card-text" style="font-family: monospace;">
+                                            <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }} </span>=<span id="answer"> {{ hist.answer }}</span>
+                                        </p>
+                                    {% else %}
+                                        <p class="card-text" style="font-family: monospace;">
+                                            <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }} </span>=<span id="answer"> {{ hist.answer }}</span>
+                                        </p>
+                                    {% endif %}
+                                    <a href="#" class="btn btn-sm btn-secondary" id="copy-input" onclick="copyText(false)">Copy Input</a>
+                                    <a href="#" class="btn btn-sm btn-secondary" id="copy-all" onclick="copyText(true)">Copy All</a>
                                 </div>
-                            {% endif %}
-
+                            </div>
                         {% endfor %}
+
+                        {#                        <ul class="list-group">#}
+                        {#                            {% for hist in history %}#}
+                        {#                                {% if forloop.counter == 1 %}#}
+                        {#                                    <li class="list-group-item text-bg-info bg-opacity-20 justify-content-center" style="font-family: monospace;">#}
+                        {#                                        <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }} </span>=<span id="answer"> {{ hist.answer }}</span>#}
+                        {#                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">new<span class="visually-hidden">unread messages</span></span>#}
+                        {#                                    </li>#}
+                        {#                                {% else %}#}
+                        {#                                    <li class="list-group-item text-bg-info bg-opacity-10" style="font-family: monospace;">#}
+                        {#                                        <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }} </span>=<span id="answer"> {{ hist.answer }}</span>#}
+                        {#                                    </li>#}
+                        {#                                {% endif %}#}
+                        {#                                <div class="row">#}
+                        {#                                    <div class="col">#}
+                        {#                                        <button class="btn btn-sm btn-light" id="copy-input" onclick="copyText(false)">Copy Input</button>#}
+                        {#                                    </div>#}
+                        {#                                    <div class="col">#}
+                        {#                                        <button class="btn btn-sm btn-light" id="copy-all" onclick="copyText(true)">Copy All</button>#}
+                        {#                                    </div>#}
+                        {#                                </div>#}
+                        {#                            {% endfor %}#}
+                        {#                        </ul>#}
                     {% endif %}
                 </div>
             {% endblock %}
