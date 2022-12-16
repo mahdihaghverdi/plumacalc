@@ -39,7 +39,7 @@ def calculate(request: HttpRequest, postfix_para: str = "") -> HttpResponse:
                         "form": form,
                         "input": cd,
                         "postfix": black.format_str(
-                            mode=black.Mode(line_length=20),
+                            mode=black.Mode(line_length=30),
                             src_contents=postfix.__str__(),
                         )
                         if postfix_para
@@ -59,4 +59,4 @@ class HistoryListView(ListView):
     template_name = 'calculator/history.html'
     model = History
     context_object_name = 'history'
-    paginate_by = 10
+    paginate_by = 15
