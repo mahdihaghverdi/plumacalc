@@ -11,7 +11,7 @@
     <div class="container">
         <div class="d-flex flex-row mb-3" style="margin-top: .5rem">
             {% block calculator %}
-                <div class="flex-fill">
+                <div class="flex-fill" style="max-width: 30rem;">
                     <h4>Calculator</h4>
                     <div class="container">
                         <form method="post">
@@ -114,15 +114,14 @@
             {% block postfix_result %}
                 <div class="flex-fill bg-light bg-opacity-10 align-self-start"
                      style="margin-right: 1rem; margin-left: 1rem; padding: .85rem">
-                    <h4>Calculations</h4>
-                    {% if postfix %}
-                        <div class="alert alert-primary" role="alert" style="font-family: monospace">
-                            <i class="bi bi-x-diamond-fill"></i> Postfix: {{ postfix|linebreaks }}
-                        </div>
-                    {% endif %}
                     {% if answer is not None %}
                         <div class="alert alert-success" role="alert" style="font-family: monospace">
                             <i class="bi bi-check-circle-fill"></i> Answer: {{ answer }}
+                        </div>
+                    {% endif %}
+                    {% if postfix %}
+                        <div class="alert alert-primary" role="alert" style="font-family: monospace">
+                            <i class="bi bi-x-diamond-fill"></i> Postfix: {{ postfix|linebreaks }}
                         </div>
                     {% endif %}
                     {% if errors %}
@@ -132,6 +131,9 @@
                     {% endif %}
                 </div>
             {% endblock %}
+        </div>
+
+        <div class="container">
             {% block sidebar %}
                 <div class="align-self-start flex-sm-column"
                      style="padding: .85rem; border-radius: 2px">
