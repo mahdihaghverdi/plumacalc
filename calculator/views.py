@@ -59,3 +59,4 @@ class HistoryListView(ListView):
     template_name = 'calculator/history.html'
     model = History
     context_object_name = 'history'
+    paginate_by = 10
