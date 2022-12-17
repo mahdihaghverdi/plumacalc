@@ -24,14 +24,15 @@ def calculate(request: HttpRequest, postfix_para: str = "") -> HttpResponse:
                     calc = postfixcalc.Calc(cd)
                     postfix = calc.postfix
                     answer = calc.answer
-                    hist = History(input=cd, answer=answer)
-                    hist.save()
                 except SyntaxError as e:
                     errors = e.msg
                 except (TypeError, ValueError):
                     errors = "Wrong Input"
                 except TimeoutError as e:
                     errors = e
+
+                hist = History(input=cd, answer=answer, errors=errors)
+                hist.save()
 
                 history = History.objects.all().order_by('-created')[:5]
                 return render(
