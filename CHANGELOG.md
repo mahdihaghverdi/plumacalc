@@ -1,3 +1,5 @@
+- v1.0.1
+  - add title for `history/` 
 - v1.0.0
   - make the `/history` much better UI and UX;
   - transfer front page from flex to grid;
