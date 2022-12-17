@@ -1,3 +1,7 @@
+- v1.1.1
+  - bump to version v1.1.1
+  - apply the resigned history section to `history/`
+
 - v1.1.0
   - Bump to version v1.1.0
   - Copy buttons are now working nicely WITH the errors included;
@@ -8,6 +12,7 @@
 
 - v1.0.1
   - add title for `history/` 
+
 - v1.0.0
   - make the `/history` much better UI and UX;
   - transfer front page from flex to grid;
