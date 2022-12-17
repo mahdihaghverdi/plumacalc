@@ -30,6 +30,8 @@ def calculate(request: HttpRequest, postfix_para: str = "") -> HttpResponse:
                     errors = e.msg
                 except (TypeError, ValueError):
                     errors = "Wrong Input"
+                except TimeoutError as e:
+                    errors = e
 
                 history = History.objects.all().order_by('-created')[:5]
                 return render(
