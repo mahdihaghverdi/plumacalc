@@ -10,29 +10,54 @@
 {% block content %}
     <div class="container" style="margin-top: 1rem">
         <h1>History</h1>
-        <div class="col">
+        <div class="col"
+             style="padding: .85rem; border-radius: 2px">
+            <h4>History</h4>
             {% if history %}
                 {% for hist in history %}
                     <div class="card text-center" style="margin: 1rem;">
                         <div class="card-header">
                             <ul class="nav nav-tabs card-header-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="true" href="#">Calculation</a>
+                                    {% if forloop.counter == 1 %}
+                                        <a class="nav-link active" aria-current="true" href="#">
+                                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">new<span
+                                                            class="visually-hidden">unread messages</span></span>Calculation</a>
+                                    {% else %}
+                                        <a class="nav-link active" aria-current="true" href="#">Calculation</a>
+                                    {% endif %}
                                 </li>
                             </ul>
                         </div>
                         <div class="card-body">
                             {% if forloop.counter == 1 %}
-                                <p class="card-text" style="font-family: monospace;">
-                                    <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }} </span>=<span id="answer"> {{ hist.answer }}</span>
-                                </p>
+                                {% if hist.errors is None %}
+                                    <p class="card-text" style="font-family: monospace;">
+                                        <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }} </span>=<span id="answer" class="text-success"> {{ hist.answer }}</span>
+                                    </p>
+                                {% else %}
+                                    <p class="card-text" style="font-family: monospace;">
+                                        <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }}</span><span id="errors"> had a <span class="text-danger">{{ hist.errors }}</span> error!</span>
+                                    </p>
+                                {% endif %}
                             {% else %}
-                                <p class="card-text" style="font-family: monospace;">
-                                    <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }} </span>=<span id="answer"> {{ hist.answer }}</span>
-                                </p>
+                                {% if hist.errors is None %}
+                                    <p class="card-text" style="font-family: monospace;">
+                                        <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }} </span>=<span id="answer"> <span class="text-success">{{ hist.answer }}</span></span>
+                                    </p>
+                                {% else %}
+                                    <p class="card-text" style="font-family: monospace;">
+                                        <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }}</span><span id="errors"> had a <span class="text-danger">{{ hist.errors }}</span> error!</span>
+                                    </p>
+                                {% endif %}
                             {% endif %}
-                            <a href="#" class="btn btn-sm btn-secondary" id="copy-input" onclick="copyText(false)">Copy Input</a>
-                            <a href="#" class="btn btn-sm btn-secondary" id="copy-all" onclick="copyText(true)">Copy All</a>
+                            {% if errors is None %}
+                                <a href="#" class="btn btn-sm btn-secondary" id="copy-input" onclick="copyText(false, false)">Copy Input</a>
+                                <a href="#" class="btn btn-sm btn-secondary" id="copy-all" onclick="copyText(true, false)">Copy All</a>
+                            {% else %}
+                                <a href="#" class="btn btn-sm btn-secondary" id="copy-input" onclick="copyText(false, true)">Copy Input</a>
+                                <a href="#" class="btn btn-sm btn-secondary" id="copy-all" onclick="copyText(true, true)">Copy All</a>
+                            {% endif %}
                         </div>
                     </div>
                 {% endfor %}

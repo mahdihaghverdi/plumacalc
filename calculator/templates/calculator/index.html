@@ -179,21 +179,21 @@
                                     {% if forloop.counter == 1 %}
                                         {% if hist.errors is None %}
                                             <p class="card-text" style="font-family: monospace;">
-                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }} </span>=<span id="answer"> {{ hist.answer }}</span>
+                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }} </span>=<span id="answer" class="text-success"> {{ hist.answer }}</span>
                                             </p>
                                         {% else %}
                                             <p class="card-text" style="font-family: monospace;">
-                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }}</span><span id="errors"> had a "{{ hist.errors }}" error!</span>
+                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }}</span><span id="errors"> had a <span class="text-danger">{{ hist.errors }}</span> error!</span>
                                             </p>
                                         {% endif %}
                                     {% else %}
                                         {% if hist.errors is None %}
                                             <p class="card-text" style="font-family: monospace;">
-                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }} </span>=<span id="answer"> {{ hist.answer }}</span>
+                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }} </span>=<span id="answer"> <span class="text-success">{{ hist.answer }}</span></span>
                                             </p>
                                         {% else %}
                                             <p class="card-text" style="font-family: monospace;">
-                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }}</span><span id="errors"> had a "{{ hist.errors }}" error!</span>
+                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }}</span><span id="errors"> had a <span class="text-danger">{{ hist.errors }}</span> error!</span>
                                             </p>
                                         {% endif %}
                                     {% endif %}
