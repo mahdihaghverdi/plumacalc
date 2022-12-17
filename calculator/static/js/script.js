@@ -13,11 +13,17 @@ function display(value) {
     document.getElementById('userinput').value = input + value;
 }
 
-function copyText(all) {
+function copyText(all, errors) {
     if (all) {
-        const input = document.getElementById('input').innerText
-        const answer = document.getElementById('answer').innerText
-        navigator.clipboard.writeText(input + '=' + answer)
+        if (errors) {
+            const input = document.getElementById('input').innerText
+            const errors = document.getElementById('errors').innerText
+            navigator.clipboard.writeText(input + errors)
+        } else {
+            const input = document.getElementById('input').innerText
+            const answer = document.getElementById('answer').innerText
+            navigator.clipboard.writeText(input + '=' + answer)
+        }
         const btnText = document.getElementById('copy-all')
         btnText.innerText = "Copied!"
         return
@@ -26,4 +32,5 @@ function copyText(all) {
     navigator.clipboard.writeText(input)
     const btn = document.getElementById('copy-input')
     btn.innerText = 'Copied!'
+
 }

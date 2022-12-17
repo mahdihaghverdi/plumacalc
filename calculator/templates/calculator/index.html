@@ -197,8 +197,13 @@
                                             </p>
                                         {% endif %}
                                     {% endif %}
-                                    <a href="#" class="btn btn-sm btn-secondary" id="copy-input" onclick="copyText(false)">Copy Input</a>
-                                    <a href="#" class="btn btn-sm btn-secondary" id="copy-all" onclick="copyText(true)">Copy All</a>
+                                    {% if errors is None %}
+                                        <a href="#" class="btn btn-sm btn-secondary" id="copy-input" onclick="copyText(false, false)">Copy Input</a>
+                                        <a href="#" class="btn btn-sm btn-secondary" id="copy-all" onclick="copyText(true, false)">Copy All</a>
+                                    {% else %}
+                                        <a href="#" class="btn btn-sm btn-secondary" id="copy-input" onclick="copyText(false, true)">Copy Input</a>
+                                        <a href="#" class="btn btn-sm btn-secondary" id="copy-all" onclick="copyText(true, true)">Copy All</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         {% endfor %}
