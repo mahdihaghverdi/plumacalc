@@ -8,4 +8,6 @@ class History(models.Model):
     created = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.input} = {self.answer}"
+        if self.errors is None:
+            return f"{self.input} = {self.answer}"
+        return f'{self.input} had {self.errors!r} error!'
