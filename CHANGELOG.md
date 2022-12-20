@@ -1,3 +1,8 @@
+- v1.1.2
+  - bump to version v1.1.2
+  - make parameters of calculate funcview keyword only;
+  - Extract buttons group of html tags into a separate html file;
+
 - v1.1.1
   - bump to version v1.1.1
   - apply the resigned history section to `history/`
@@ -11,7 +16,7 @@
   - Update postfixcalc and capture the TimeoutError raised by the lib;
 
 - v1.0.1
-  - add title for `history/` 
+  - add title for `history/`
 
 - v1.0.0
   - make the `/history` much better UI and UX;
