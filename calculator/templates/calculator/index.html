@@ -17,87 +17,7 @@
                         <form method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="row">
-                                            <button type="button" class="col btn btn-outline-secondary" onclick="display(value=1)">
-                                                <i class="bi bi-1-circle-fill"></i>
-                                            </button>
-                                            <button type="button" class="col btn btn-outline-secondary" onclick="display(value=2)">
-                                                <i class="bi bi-2-circle-fill"></i>
-                                            </button>
-                                            <button type="button" class="col btn btn-outline-secondary" onclick="display(value=3)">
-                                                <i class="bi bi-3-circle-fill"></i>
-                                            </button>
-                                        </div>
-                                        <div class="row">
-                                            <button type="button" class="col btn btn-outline-secondary" onclick="display(value=4)">
-                                                <i class="bi bi-4-circle-fill"></i>
-                                            </button>
-                                            <button type="button" class="col btn btn-outline-secondary" onclick="display(value=5)">
-                                                <i class="bi bi-5-circle-fill"></i>
-                                            </button>
-                                            <button type="button" class="col btn btn-outline-secondary" onclick="display(value=6)">
-                                                <i class="bi bi-6-circle-fill"></i>
-                                            </button>
-                                        </div>
-                                        <div class="row">
-                                            <button type="button" class="col btn btn-outline-secondary" onclick="display(value=7)">
-                                                <i class="bi bi-7-circle-fill"></i></button>
-                                            <button type="button" class="col btn btn-outline-secondary" onclick="display(value=8)">
-                                                <i class="bi bi-8-circle-fill"></i>
-                                            </button>
-                                            <button type="button" class="col btn btn-outline-secondary" onclick="display(value=9)">
-                                                <i class="bi bi-9-circle-fill"></i>
-                                            </button>
-                                        </div>
-                                        <div class="row">
-                                            <button type="button" class="col btn btn-outline-secondary" onclick="display(value='.')">
-                                                <i class="bi bi-dot"></i>
-                                            </button>
-                                            <button type="button" class="col btn btn-outline-secondary" onclick="display(value=0)">
-                                                <i class="bi bi-0-circle-fill"></i>
-                                            </button>
-                                            <button type="button" class="col btn btn-warning" onclick="removeLast()">
-                                                <i class="bi bi-backspace-fill"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="row">
-                                            <button type="button" class="col btn btn-outline-info" onclick="display(value='(')"><strong>(</strong>
-                                            </button>
-                                            <button type="button" class="col btn btn-outline-info" onclick="display(value=')')"><strong>)</strong>
-                                            </button>
-                                        </div>
-                                        <div class="row">
-                                            <button type="button" class="col btn btn-outline-info" onclick="display(value='+')">
-                                                <i class="bi bi-plus-circle-fill"></i>
-                                            </button>
-                                            <button type="button" class="col btn btn-outline-info" onclick="display(value='-')">
-                                                <i class="bi bi-dash-circle-fill"></i>
-                                            </button>
-                                        </div>
-                                        <div class="row">
-                                            <button type="button" class="col btn btn-outline-info" onclick="display(value='*')">
-                                                <i class="bi bi-x-circle-fill"></i>
-                                            </button>
-                                            <button type="button" class="col btn btn-outline-info" onclick="display(value='/')">
-                                                <i class="bi bi-slash-circle-fill"></i>
-                                            </button>
-                                        </div>
-                                        <div class="row">
-                                            <button type="button" class="col btn btn-outline-info" onclick="display(value='^')">
-                                                <i class="bi bi-arrow-up-circle-fill"></i>
-                                            </button>
-                                            <button type="button" class="col btn btn-danger" onclick="clearInput()">
-                                                <i class="bi bi-eraser-fill"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {% include 'buttons.html' %}
                             <div style="margin: 1rem 1rem 1rem 0">
                                 <button class="btn btn-primary">
                                     <i class="bi bi-send-fill"></i>
@@ -183,7 +103,8 @@
                                             </p>
                                         {% else %}
                                             <p class="card-text" style="font-family: monospace;">
-                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }}</span><span id="errors"> had a <span class="text-danger">{{ hist.errors }}</span> error!</span>
+                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }}</span><span id="errors"> had a <span
+                                                    class="text-danger">{{ hist.errors }}</span> error!</span>
                                             </p>
                                         {% endif %}
                                     {% else %}
@@ -193,7 +114,8 @@
                                             </p>
                                         {% else %}
                                             <p class="card-text" style="font-family: monospace;">
-                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }}</span><span id="errors"> had a <span class="text-danger">{{ hist.errors }}</span> error!</span>
+                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }}</span><span id="errors"> had a <span
+                                                    class="text-danger">{{ hist.errors }}</span> error!</span>
                                             </p>
                                         {% endif %}
                                     {% endif %}
@@ -212,4 +134,8 @@
             {% endblock %}
         </div>
     </div>
+
+    <label for="customRange1" class="form-label">Example range</label>
+<input type="range" class="form-range" id="customRange1">
 {% endblock %}
+
