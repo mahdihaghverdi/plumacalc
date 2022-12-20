@@ -8,7 +8,7 @@ from .forms import InputForm
 from .models import History
 
 
-def calculate(request: HttpRequest, postfix_para: str = "") -> HttpResponse:
+def calculate(request: HttpRequest, *, postfix_para: bool = False) -> HttpResponse:
     history = History.objects.all().order_by('-created')[:5]
     match request.method:
         case "GET":
@@ -55,7 +55,7 @@ def calculate(request: HttpRequest, postfix_para: str = "") -> HttpResponse:
 
 
 def calc_with_postfix(request: HttpRequest) -> HttpResponse:
-    return calculate(request, 'something')
+    return calculate(request, postfix_para=True)
 
 
 class HistoryListView(ListView):
