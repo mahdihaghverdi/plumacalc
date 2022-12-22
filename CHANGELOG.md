@@ -1,24 +1,31 @@
-- v1.1.2
-  - bump to version v1.1.2
+- `v1.2.0`
+  - bump to version `v1.2.0`
+  - Update postfix calc and rewrite calculate view;
+  - Define HeavyInputFrom form and create a button for its url and test the view in "GET" request;
+  - make the links in the navbar look like beautiful buttons and add `heavy calculations` buttons there;
+  - refactor index.html and separate different parts and write them in separate html files;
+
+- `v1.1.2`
+  - bump to version `v1.1.2`
   - make parameters of calculate funcview keyword only;
   - Extract buttons group of html tags into a separate html file;
 
-- v1.1.1
-  - bump to version v1.1.1
+- `v1.1.1`
+  - bump to version `v1.1.1`
   - apply the resigned history section to `history/`
 
-- v1.1.0
-  - Bump to version v1.1.0
+- `v1.1.0`
+  - Bump to version `v1.1.0`
   - Copy buttons are now working nicely WITH the errors included;
   - errors are shown nicely in index.html history section;
   - make `answer` nullable;
   - add a nullable filed to History: `errors`;
   - Update postfixcalc and capture the TimeoutError raised by the lib;
 
-- v1.0.1
+- `v1.0.1`
   - add title for `history/`
 
-- v1.0.0
+- `v1.0.0`
   - make the `/history` much better UI and UX;
   - transfer front page from flex to grid;
   - redesign history section and put copying button for it;
