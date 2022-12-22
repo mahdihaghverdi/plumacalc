@@ -14,6 +14,11 @@ class InputForm(forms.Form):
         ),
     )
 
+    with_postfix = forms.BooleanField(
+        required=False,
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),
+    )
+
 
 class HeavyInputForm(InputForm):
     heavy_calculations = forms.ChoiceField(

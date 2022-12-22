@@ -8,12 +8,7 @@ from .forms import HeavyInputForm, InputForm
 from .models import History
 
 
-def calculate(
-    request: HttpRequest,
-    *,
-    postfix_para: bool = False,
-    heavy: bool = False,
-) -> HttpResponse:
+def calculate(request: HttpRequest, *, heavy: bool = False) -> HttpResponse:
     history = History.objects.all().order_by("-created")[:5]
     match request.method:
         case "GET":
@@ -29,9 +24,11 @@ def calculate(
                 InputForm(request.POST) if not heavy else HeavyInputForm(request.POST)
             )
             postfix, answer, errors = [None] * 3
+            print(form.is_valid())
 
             if form.is_valid():
                 input_ = form.cleaned_data["input"]
+                with_postfix = form.cleaned_data["with_postfix"]
                 try:
                     if heavy:
                         timeout = form.cleaned_data["heavy_calculations"]
@@ -64,17 +61,13 @@ def calculate(
                             mode=black.Mode(line_length=30),
                             src_contents=postfix.__str__(),
                         )
-                        if postfix_para
+                        if with_postfix
                         else None,
                         "answer": answer,
                         "errors": errors,
                         "history": history,
                     },
                 )
-
-
-def calc_with_postfix(request: HttpRequest) -> HttpResponse:
-    return calculate(request, postfix_para=True)
 
 
 def calc_heavy(request: HttpRequest) -> HttpResponse:
