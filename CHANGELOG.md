@@ -1,3 +1,7 @@
+- `v1.2.1`
+  - bump to version `v1.2.1`
+  - add copy button to `Answer` section
+
 - `v1.2.0`
   - bump to version `v1.2.0`
   - Update postfix calc and rewrite calculate view;
