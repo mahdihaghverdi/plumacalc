@@ -11,131 +11,17 @@
     <div class="container">
         <div class="row" style="margin-top: .5rem">
             {% block calculator %}
-                <div class="col-6">
-                    <h4>Calculator</h4>
-                    <div class="container">
-                        <form method="post">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            {% include 'buttons.html' %}
-                            <div style="margin: 1rem 1rem 1rem 0">
-                                <button class="btn btn-primary">
-                                    <i class="bi bi-send-fill"></i>
-                                    Calculate
-                                </button>
-                                <a class="btn btn-outline-danger" href="{% url 'calculate' %}">
-                                    <i class="bi bi-arrow-counterclockwise"></i>
-                                </a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                {% include 'calculator.html' %}
             {% endblock %}
             {% block postfix_result %}
-                <div class="col-5 bg-light bg-opacity-10"
-                     style="margin-right: 1rem; margin-left: 1rem; padding: .85rem">
-                    {% if answer is not None %}
-                        <div class="alert alert-success" role="alert" style="font-family: monospace">
-                            <div class="card">
-                                <div class="card-header">
-                                    <i class="bi bi-check-circle-fill"></i> Answer
-                                </div>
-                                <div class="card-body" style="font-family: monospace">
-                                    {{ answer }}
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                    {% if postfix %}
-                        <div class="alert alert-primary" role="alert" style="font-family: monospace">
-                            <div class="card">
-                                <div class="card-header">
-                                    <i class="bi bi-x-diamond-fill"></i> Postfix
-                                </div>
-                                <div class="card-body" style="font-family: monospace">
-                                    {{ postfix|linebreaks }}
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                    {% if errors %}
-                        <div class="alert alert-danger" role="alert" style="font-family: monospace">
-                            <div class="card">
-                                <div class="card-header">
-                                    <i class="bi bi-exclamation-triangle-fill"></i> Errors
-                                </div>
-                                <div class="card-body" style="font-family: monospace">
-                                    {{ errors }}
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                </div>
+                {% include 'postfix_result.html' %}
             {% endblock %}
         </div>
         <hr>
         <div class="col">
             {% block history %}
-                <div class="align-self-start flex-sm-column"
-                     style="padding: .85rem; border-radius: 2px">
-                    <h4>History</h4>
-                    {% if history %}
-                        {% for hist in history %}
-                            <div class="card text-center" style="margin: 1rem;">
-                                <div class="card-header">
-                                    <ul class="nav nav-tabs card-header-tabs">
-                                        <li class="nav-item">
-                                            {% if forloop.counter == 1 %}
-                                                <a class="nav-link active" aria-current="true" href="#">
-                                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">new<span
-                                                            class="visually-hidden">unread messages</span></span>Calculation</a>
-                                            {% else %}
-                                                <a class="nav-link active" aria-current="true" href="#">Calculation</a>
-                                            {% endif %}
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-body">
-                                    {% if forloop.counter == 1 %}
-                                        {% if hist.errors is None %}
-                                            <p class="card-text" style="font-family: monospace;">
-                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }} </span>=<span id="answer" class="text-success"> {{ hist.answer }}</span>
-                                            </p>
-                                        {% else %}
-                                            <p class="card-text" style="font-family: monospace;">
-                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }}</span><span id="errors"> had a <span
-                                                    class="text-danger">{{ hist.errors }}</span> error!</span>
-                                            </p>
-                                        {% endif %}
-                                    {% else %}
-                                        {% if hist.errors is None %}
-                                            <p class="card-text" style="font-family: monospace;">
-                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }} </span>=<span id="answer"> <span class="text-success">{{ hist.answer }}</span></span>
-                                            </p>
-                                        {% else %}
-                                            <p class="card-text" style="font-family: monospace;">
-                                                <i class="bi bi-info-circle-fill"></i> <span id="input">{{ hist.input }}</span><span id="errors"> had a <span
-                                                    class="text-danger">{{ hist.errors }}</span> error!</span>
-                                            </p>
-                                        {% endif %}
-                                    {% endif %}
-                                    {% if errors is None %}
-                                        <a href="#" class="btn btn-sm btn-secondary" id="copy-input" onclick="copyText(false, false)">Copy Input</a>
-                                        <a href="#" class="btn btn-sm btn-secondary" id="copy-all" onclick="copyText(true, false)">Copy All</a>
-                                    {% else %}
-                                        <a href="#" class="btn btn-sm btn-secondary" id="copy-input" onclick="copyText(false, true)">Copy Input</a>
-                                        <a href="#" class="btn btn-sm btn-secondary" id="copy-all" onclick="copyText(true, true)">Copy All</a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
+            {% include 'history.html' %}
             {% endblock %}
         </div>
     </div>
-
-    <label for="customRange1" class="form-label">Example range</label>
-<input type="range" class="form-range" id="customRange1">
 {% endblock %}
-

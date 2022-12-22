@@ -1,0 +1,39 @@
+<div class="col-5 bg-light bg-opacity-10"
+     style="margin-right: 1rem; margin-left: 1rem; padding: .85rem">
+    {% if answer is not None %}
+        <div class="alert alert-success" role="alert" style="font-family: monospace">
+            <div class="card">
+                <div class="card-header">
+                    <i class="bi bi-check-circle-fill"></i> Answer
+                </div>
+                <div class="card-body" style="font-family: monospace">
+                    {{ answer }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if postfix %}
+        <div class="alert alert-primary" role="alert" style="font-family: monospace">
+            <div class="card">
+                <div class="card-header">
+                    <i class="bi bi-x-diamond-fill"></i> Postfix
+                </div>
+                <div class="card-body" style="font-family: monospace">
+                    {{ postfix|linebreaks }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if errors %}
+        <div class="alert alert-danger" role="alert" style="font-family: monospace">
+            <div class="card">
+                <div class="card-header">
+                    <i class="bi bi-exclamation-triangle-fill"></i> Errors
+                </div>
+                <div class="card-body" style="font-family: monospace">
+                    {{ errors }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
