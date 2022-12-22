@@ -15,39 +15,42 @@ def calculate(
     heavy: bool = False,
 ) -> HttpResponse:
     history = History.objects.all().order_by("-created")[:5]
-    match (request.method, heavy):
-        case ("GET", False):
-            form = InputForm()
+    match request.method:
+        case "GET":
+            form = InputForm() if not heavy else HeavyInputForm()
             return render(
                 request,
                 "calculator/index.html",
-                {"form": form, "history": history},
-            )
-        case ("GET", True):
-            form = HeavyInputForm()
-            return render(
-                request,
-                "calculator/index.html",
-                {"form": form, "history": history},
+                context={"form": form, "history": history},
             )
 
         case "POST":
-            form = InputForm(request.POST)
+            form = (
+                InputForm(request.POST) if not heavy else HeavyInputForm(request.POST)
+            )
             postfix, answer, errors = [None] * 3
+
             if form.is_valid():
-                cd = form.cleaned_data["input"]
+                input_ = form.cleaned_data["input"]
                 try:
-                    calc = postfixcalc.Calc(cd)
+                    if heavy:
+                        timeout = form.cleaned_data["heavy_calculations"]
+                        calc = postfixcalc.Calc(input_, timeout=float(timeout))
+                    else:
+                        calc = postfixcalc.Calc(input_)
                     postfix = calc.postfix
-                    answer = calc.answer
+                    answer = calc.stranswer
                 except SyntaxError as e:
                     errors = e.msg
-                except (TypeError, ValueError):
-                    errors = "Wrong Input"
+                except (TypeError, ValueError) as e:
+                    if isinstance(e, ValueError) and "took" in e.__str__():
+                        errors = e.__str__()
+                    else:
+                        errors = "Wrong Input"
                 except TimeoutError as e:
-                    errors = e
+                    errors = e.__str__()
 
-                hist = History(input=cd, answer=answer, errors=errors)
+                hist = History(input=input_, answer=answer, errors=errors)
                 hist.save()
 
                 history = History.objects.all().order_by("-created")[:5]
@@ -56,7 +59,7 @@ def calculate(
                     "calculator/index.html",
                     {
                         "form": form,
-                        "input": cd,
+                        "input": input_,
                         "postfix": black.format_str(
                             mode=black.Mode(line_length=30),
                             src_contents=postfix.__str__(),
