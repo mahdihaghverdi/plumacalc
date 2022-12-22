@@ -1,3 +1,10 @@
+- `v1.3.0`
+  - bump to version `v1.3.0`
+  - postfix and error cards now have copyable content;
+  - expression input now has a help_text and a placeholder;
+  - When the error is `Wrong Input` the Error card will show the input of the user;
+  - remove the `with postfix` button from navbar and create a Checkbox for that;
+
 - `v1.2.1`
   - bump to version `v1.2.1`
   - add copy button to `Answer` section
