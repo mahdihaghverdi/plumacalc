@@ -5,8 +5,6 @@ from django.forms import TextInput
 class InputForm(forms.Form):
     input = forms.CharField(
         label="Expression",
-        label_suffix=": ",
-        empty_value="Arithmetic Expression",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -14,4 +12,14 @@ class InputForm(forms.Form):
                 "id": "userinput",
             },
         ),
+    )
+
+
+class HeavyInputForm(InputForm):
+    heavy_calculations = forms.ChoiceField(
+        choices=[(0.5, "0.5"), (1, "1"), (1.5, "1.5"), (2, "2")],
+        widget=forms.Select(
+            attrs={"class": "form-select form-select-sm"},
+        ),
+        label="Heavy calculations (in seconds)",
     )

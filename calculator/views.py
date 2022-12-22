@@ -4,16 +4,32 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView
 
-from .forms import InputForm
+from .forms import HeavyInputForm, InputForm
 from .models import History
 
 
-def calculate(request: HttpRequest, *, postfix_para: bool = False) -> HttpResponse:
-    history = History.objects.all().order_by('-created')[:5]
-    match request.method:
-        case "GET":
+def calculate(
+    request: HttpRequest,
+    *,
+    postfix_para: bool = False,
+    heavy: bool = False,
+) -> HttpResponse:
+    history = History.objects.all().order_by("-created")[:5]
+    match (request.method, heavy):
+        case ("GET", False):
             form = InputForm()
-            return render(request, "calculator/index.html", {"form": form, 'history': history})
+            return render(
+                request,
+                "calculator/index.html",
+                {"form": form, "history": history},
+            )
+        case ("GET", True):
+            form = HeavyInputForm()
+            return render(
+                request,
+                "calculator/index.html",
+                {"form": form, "history": history},
+            )
 
         case "POST":
             form = InputForm(request.POST)
@@ -34,7 +50,7 @@ def calculate(request: HttpRequest, *, postfix_para: bool = False) -> HttpRespon
                 hist = History(input=cd, answer=answer, errors=errors)
                 hist.save()
 
-                history = History.objects.all().order_by('-created')[:5]
+                history = History.objects.all().order_by("-created")[:5]
                 return render(
                     request,
                     "calculator/index.html",
@@ -49,7 +65,7 @@ def calculate(request: HttpRequest, *, postfix_para: bool = False) -> HttpRespon
                         else None,
                         "answer": answer,
                         "errors": errors,
-                        'history': history
+                        "history": history,
                     },
                 )
 
@@ -58,8 +74,12 @@ def calc_with_postfix(request: HttpRequest) -> HttpResponse:
     return calculate(request, postfix_para=True)
 
 
+def calc_heavy(request: HttpRequest) -> HttpResponse:
+    return calculate(request, heavy=True)
+
+
 class HistoryListView(ListView):
-    template_name = 'calculator/history.html'
+    template_name = "calculator/history.html"
     model = History
-    context_object_name = 'history'
+    context_object_name = "history"
     paginate_by = 15
