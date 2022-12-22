@@ -10,8 +10,10 @@ class InputForm(forms.Form):
                 "class": "form-control",
                 "style": "font-family: monospace",
                 "id": "userinput",
+                "placeholder": "Arithmatic expression",
             },
         ),
+        help_text="<span class='form-text' style='font-family: monospace;'>e.g. (-1)^2 * 3</span>",
     )
 
     with_postfix = forms.BooleanField(
@@ -22,7 +24,15 @@ class InputForm(forms.Form):
 
 class HeavyInputForm(InputForm):
     heavy_calculations = forms.ChoiceField(
-        choices=[(0.5, "0.5"), (1, "1"), (1.5, "1.5"), (2, "2")],
+        choices=[
+            (0.5, "0.5"),
+            (1, "1"),
+            (1.5, "1.5"),
+            (2, "2"),
+            (2.5, "2.5"),
+            (3, "3"),
+            (4, "4"),
+        ],
         widget=forms.Select(
             attrs={"class": "form-select form-select-sm"},
         ),
