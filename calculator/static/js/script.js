@@ -34,3 +34,12 @@ function copyText(all, errors) {
     btn.innerText = 'Copied!'
 
 }
+
+
+function copyAnswer() {
+    const answer = document.getElementById('tocopy').innerText
+    navigator.clipboard.writeText(answer)
+    const temp = '<i class="bi bi-clipboard-check"></i>';
+    document.getElementById('tag').classList.remove('bi-clipboard')
+    document.getElementById('tag').classList.add('bi-clipboard-check-fill')
+}
