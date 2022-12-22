@@ -43,7 +43,7 @@ def calculate(request: HttpRequest, *, heavy: bool = False) -> HttpResponse:
                     if isinstance(e, ValueError) and "took" in e.__str__():
                         errors = e.__str__()
                     else:
-                        errors = "Wrong Input"
+                        errors = f"Wrong Input: {input_!r}"
                 except TimeoutError as e:
                     errors = e.__str__()
 
