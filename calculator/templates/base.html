@@ -16,6 +16,12 @@
         {% block title %}
         {% endblock %}
     </title>
+    <style>
+        .form-control:focus, .form-select:focus {
+            border-color: #c14bc1;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 100, 255, 0.5);
+        }
+    </style>
 </head>
 <body>
 {% block navbar %}
@@ -42,6 +48,5 @@
         crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="{% static 'js/script.js' %}"></script>
-
 </body>
 </html>

@@ -5,9 +5,9 @@
             <div class="card">
                 <div class="card-header">
                     <i class="bi bi-check-circle-fill"></i> Answer
-                    <a href="#" class="btn btn-sm btn-secondary" id="copy-answer" onclick="copyAnswer()"><i id="tag" class="bi bi-clipboard"></i></a>
+                    <a href="#" class="btn btn-sm btn-outline-success bg-opacity-10" id="copy-answer" onclick="copyAnswer()"><i id="ansclip" class="bi bi-clipboard"></i></a>
                 </div>
-                <div id="tocopy" class="card-body" style="font-family: monospace">
+                <div id="anstocopy" class="card-body" style="font-family: monospace">
                     {{ answer }}
                 </div>
             </div>
@@ -18,8 +18,9 @@
             <div class="card">
                 <div class="card-header">
                     <i class="bi bi-x-diamond-fill"></i> Postfix
+                    <a href="#" class="btn btn-sm btn-outline-primary" id="copy-postfix" onclick="copyPostfix()"><i id="postclip" class="bi bi-clipboard"></i></a>
                 </div>
-                <div class="card-body" style="font-family: monospace">
+                <div id="posttocopy" class="card-body" style="font-family: monospace">
                     {{ postfix|linebreaks }}
                 </div>
             </div>
@@ -30,8 +31,9 @@
             <div class="card">
                 <div class="card-header">
                     <i class="bi bi-exclamation-triangle-fill"></i> Errors
+                    <a href="#" class="btn btn-sm btn-outline-danger" id="copy-error" onclick="copyError()"><i id="errorclip" class="bi bi-clipboard"></i></a>
                 </div>
-                <div class="card-body" style="font-family: monospace">
+                <div id="errortocopy" class="card-body" style="font-family: monospace">
                     {{ errors }}
                 </div>
             </div>

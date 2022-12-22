@@ -37,9 +37,25 @@ function copyText(all, errors) {
 
 
 function copyAnswer() {
-    const answer = document.getElementById('tocopy').innerText
+    const answer = document.getElementById('anstocopy').innerText
     navigator.clipboard.writeText(answer)
     const temp = '<i class="bi bi-clipboard-check"></i>';
-    document.getElementById('tag').classList.remove('bi-clipboard')
-    document.getElementById('tag').classList.add('bi-clipboard-check-fill')
+    document.getElementById('ansclip').classList.remove('bi-clipboard')
+    document.getElementById('ansclip').classList.add('bi-clipboard-check-fill')
+}
+
+function copyPostfix() {
+    const answer = document.getElementById('posttocopy').innerText
+    navigator.clipboard.writeText(answer)
+    const temp = '<i class="bi bi-clipboard-check"></i>';
+    document.getElementById('postclip').classList.remove('bi-clipboard')
+    document.getElementById('postclip').classList.add('bi-clipboard-check-fill')
+}
+
+function copyError() {
+    const answer = document.getElementById('errortocopy').innerText
+    navigator.clipboard.writeText(answer)
+    const temp = '<i class="bi bi-clipboard-check"></i>';
+    document.getElementById('errorclip').classList.remove('bi-clipboard')
+    document.getElementById('errorclip').classList.add('bi-clipboard-check-fill')
 }
