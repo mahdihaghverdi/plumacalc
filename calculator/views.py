@@ -24,15 +24,18 @@ def calculate(request: HttpRequest, *, heavy: bool = False) -> HttpResponse:
                 InputForm(request.POST) if not heavy else HeavyInputForm(request.POST)
             )
             postfix, answer, errors = [None] * 3
-            print(form.is_valid())
-
             if form.is_valid():
                 input_ = form.cleaned_data["input"]
                 with_postfix = form.cleaned_data["with_postfix"]
                 try:
                     if heavy:
-                        timeout = form.cleaned_data["heavy_calculations"]
-                        calc = postfixcalc.Calc(input_, timeout=float(timeout))
+                        calc_timeout = form.cleaned_data["calculation_timeout"]
+                        str_timeout = form.cleaned_data["str_representation_timeout"]
+                        calc = postfixcalc.Calc(
+                            input_,
+                            calc_timeout=float(calc_timeout),
+                            str_repr_timeout=int(str_timeout),
+                        )
                     else:
                         calc = postfixcalc.Calc(input_)
                     postfix = calc.postfix

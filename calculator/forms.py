@@ -41,14 +41,10 @@ class HeavyInputForm(InputForm):
 
     str_representation_timeout = forms.ChoiceField(
         choices=[
-            (2, "2"),
-            (2.5, "2.5"),
-            (3, "3"),
-            (3.5, "3.5"),
-            (4, "4"),
-            (4, "4.5"),
             (5, "5"),
-            (6, "6"),
+            (10, "10"),
+            (15, "15"),
+            (20, "20"),
         ],
         widget=forms.Select(
             attrs={"class": "form-select form-select-sm"},
