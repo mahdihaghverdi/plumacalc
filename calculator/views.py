@@ -82,3 +82,6 @@ class HistoryListView(ListView):
     model = History
     context_object_name = "history"
     paginate_by = 15
+
+    def get_queryset(self):
+        return History.objects.all().order_by("-pk")
