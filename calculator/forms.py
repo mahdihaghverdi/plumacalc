@@ -23,7 +23,7 @@ class InputForm(forms.Form):
 
 
 class HeavyInputForm(InputForm):
-    heavy_calculations = forms.ChoiceField(
+    calculation_timeout = forms.ChoiceField(
         choices=[
             (0.5, "0.5"),
             (1, "1"),
@@ -36,5 +36,22 @@ class HeavyInputForm(InputForm):
         widget=forms.Select(
             attrs={"class": "form-select form-select-sm"},
         ),
-        label="Heavy calculations (in seconds)",
+        label="Calculation Timeout (in seconds)",
+    )
+
+    str_representation_timeout = forms.ChoiceField(
+        choices=[
+            (2, "2"),
+            (2.5, "2.5"),
+            (3, "3"),
+            (3.5, "3.5"),
+            (4, "4"),
+            (4, "4.5"),
+            (5, "5"),
+            (6, "6"),
+        ],
+        widget=forms.Select(
+            attrs={"class": "form-select form-select-sm"},
+        ),
+        label="String Representation Timeout (in seconds)",
     )
