@@ -1,3 +1,9 @@
+- `V1.4.0`
+  - bump to version `v1.4.0`
+  - Write a fabulous README.md for the project;
+  - apply the update of `postfixcalc` to project;
+  - Update `postfixcalc` and add str_repr_timeout to HeavyInputForm;
+
 - `v1.3.0`
   - bump to version `v1.3.0`
   - postfix and error cards now have copyable content;
