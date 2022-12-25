@@ -1,3 +1,7 @@
+- `v1.4.1`
+  - bump to version `v1.4.1`
+  - make the histories shown in descending order and remove `new` badge
+
 - `V1.4.0`
   - bump to version `v1.4.0`
   - Write a fabulous README.md for the project;
